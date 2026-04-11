@@ -5,22 +5,22 @@
  * @see <a href="https://www.apexhours.com/trigger-framework-in-salesforce/">Trigger Frameworks in Salesforce</a>
  */
 public with sharing class OpportunityTriggerHandler extends TriggerHandler {
-    /***************************************
-     * CONSTRUCTOR
-     ***************************************/
+    // Local copies of the Trigger context variables
     private List<Opportunity> newOpps;
     private List<Opportunity> oldOpps;
     private Map<Id, Opportunity> oldOppsMap;
+
+    /**
+     * CONSTRUCTOR
+     * Handles the necessary type casting for Trigger context variables referenced in a class
+     */
     public OpportunityTriggerHandler() {
-        // Constructor takes care of the necessary type casting for Trigger context variables referenced in a class
+        // Constructor takes care of the 
         this.newOpps = (List<Opportunity>) Trigger.new;
         this.oldOpps = (List<Opportunity>) Trigger.old;
         this.oldOppsMap = (Map<Id, Opportunity>) Trigger.oldMap;
     }
 
-    /***************************************
-     * HANDLER METHODS
-     ***************************************/
     /**
      * BEFORE_INSERT
      */

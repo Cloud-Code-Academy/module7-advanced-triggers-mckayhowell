@@ -3,10 +3,6 @@
  * Contains the utility logic called by the OpportunityTriggerHandler
  */
 public with sharing class OpportunityHelper {
-    public OpportunityHelper() {
-
-    }
-
     /**
      * Set a default Type if none was specified
      * @param newOpps a list of Opportunity records
@@ -96,7 +92,7 @@ public with sharing class OpportunityHelper {
     /**
      * Note any changes to Stage value in the Description
      * @param newOpps a list of Opportunity records containing the new values
-     * @param oldOppMap a map of Opportunity records containing the old values
+     * @param oldOppsMap a map of Opportunity records containing the old values
      */
     public static void updateDescriptionFromStage(List<Opportunity> newOpps, Map<Id, Opportunity> oldOppsMap){
         // Append Stage changes in Opportunity Description
@@ -135,7 +131,7 @@ public with sharing class OpportunityHelper {
     /**
      * Sends an email notification to the owner of the Opportunity when it gets deleted
      * Uses Salesforce's Messaging.SingleEmailMessage to send the email
-     * @param newOpps a list of Opportunity records containing the new values
+     * @param oldOpps a list of Opportunity records containing the old values
      */
     public static void notifyOwnersOpportunityDeleted(List<Opportunity> oldOpps) {
         List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
