@@ -1,3 +1,9 @@
+/**
+ * Opportunity Trigger Handler
+ * Extends the virtual TriggerHandler framework class and overrides the context methods
+ * TriggerHandler Source: https://github.com/kevinohara80/sfdc-trigger-framework
+ * @see <a href="https://www.apexhours.com/trigger-framework-in-salesforce/">Trigger Frameworks in Salesforce</a>
+ */
 public with sharing class OpportunityTriggerHandler extends TriggerHandler {
     /***************************************
      * CONSTRUCTOR

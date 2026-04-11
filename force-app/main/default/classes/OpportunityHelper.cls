@@ -1,3 +1,7 @@
+/**
+ * Opportunity trigger Helper
+ * Contains the utility logic called by the OpportunityTriggerHandler
+ */
 public with sharing class OpportunityHelper {
     public OpportunityHelper() {
 
@@ -38,9 +42,9 @@ public with sharing class OpportunityHelper {
             accountIds.add(opp.AccountId);
         }*/
         Map<Id, Contact> contacts = new Map<Id, Contact>(
-            [SELECT Id, FirstName, AccountId 
-            FROM Contact 
-            WHERE Title = 'CEO' AND AccountId IN (SELECT AccountId FROM Opportunity WHERE Id IN :newOpps) 
+            [SELECT Id, FirstName, AccountId
+            FROM Contact
+            WHERE Title = 'CEO' AND AccountId IN (SELECT AccountId FROM Opportunity WHERE Id IN :newOpps)
             ORDER BY FirstName ASC]);
         Map<Id, Contact> accountIdToContact = new Map<Id, Contact>();
 
@@ -99,7 +103,7 @@ public with sharing class OpportunityHelper {
         for (Opportunity opp : newOpps){
             if (opp.StageName != null && opp.StageName != oldOppsMap.get(opp.Id).StageName){
                 opp.Description += '\n Stage Change:' + opp.StageName + ':' + DateTime.now().format();
-            }                
+            }
         }
     }
 
@@ -108,7 +112,7 @@ public with sharing class OpportunityHelper {
      * Only updates the Opportunities that don't already have a primary contact
      * @param newOpps a list of Opportunity records containing the new values
      */
-    public static void assignPrimaryContact(List<Opportunity> newOpps) {        
+    public static void assignPrimaryContact(List<Opportunity> newOpps) {
         // Build a map of Account Ids and the VP Sales contacts
         List<Contact> contacts = [SELECT Id, AccountId FROM Contact WHERE Title = 'VP Sales' AND AccountId IN (SELECT AccountId FROM Opportunity WHERE Id IN :newOpps)];
         Map<Id,Id> accountToContactMap = new Map<Id,Id>();
@@ -138,7 +142,6 @@ public with sharing class OpportunityHelper {
         for (Opportunity opp : oldOpps){
             List<String> toAddresses = new List<String>{opp.OwnerId}; // Can accept User Id as a To Address
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-            addresses
             mail.setToAddresses(toAddresses);
             mail.setSubject('Opportunity Deleted : ' + opp.Name);
             mail.setPlainTextBody('Your Opportunity: ' + opp.Name +' has been deleted.');

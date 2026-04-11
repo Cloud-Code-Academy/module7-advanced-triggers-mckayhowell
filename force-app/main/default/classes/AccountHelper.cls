@@ -19,7 +19,7 @@ public with sharing class AccountHelper {
      * @param accounts The entire set of Accounts contained in Trigger.New
      */
     static public void setTypeProspect(List<Account> accounts){
-        /* Since SObjects are passed by reference, setting field values in the loop actually does update 
+        /* Since SObjects are passed by reference, setting field values in the loop actually does update
         * the source Sobject and we don't need to return anything to the parent trigger
         */
         for (Account acc : accounts) {
@@ -74,7 +74,7 @@ public with sharing class AccountHelper {
      * @param accounts The entire set of Accounts contained in Trigger.New
      */
     static public void defaultContact(List<Account> accounts){
-        List<Contact> contacts = new List<Contact>();   
+        List<Contact> contacts = new List<Contact>();
         for(Account acc : accounts){
             Contact con = new Contact();
             con.LastName = 'DefaultContact';
