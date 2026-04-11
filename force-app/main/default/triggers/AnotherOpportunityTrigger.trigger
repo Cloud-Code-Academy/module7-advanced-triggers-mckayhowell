@@ -19,6 +19,8 @@ https://www.salesforceben.com/12-salesforce-apex-best-practices/
 https://developer.salesforce.com/blogs/developer-relations/2015/01/apex-best-practices-15-apex-commandments
 */
 trigger AnotherOpportunityTrigger on Opportunity (before insert, after insert, before update, after update, before delete, after delete, after undelete) {
+
+    /*
     if (Trigger.isBefore){
         if (Trigger.isInsert){
             // Set default Type for new Opportunities
@@ -68,12 +70,14 @@ trigger AnotherOpportunityTrigger on Opportunity (before insert, after insert, b
             assignPrimaryContact(Trigger.newMap);
         }
     }
+    */
 
     /*
     notifyOwnersOpportunityDeleted:
     - Sends an email notification to the owner of the Opportunity when it gets deleted.
     - Uses Salesforce's Messaging.SingleEmailMessage to send the email.
     */
+    /*
     private static void notifyOwnersOpportunityDeleted(List<Opportunity> opps) {
         List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
         for (Opportunity opp : opps){
@@ -91,12 +95,14 @@ trigger AnotherOpportunityTrigger on Opportunity (before insert, after insert, b
             System.debug('Exception: ' + e.getMessage());
         }
     }
+        */
 
     /*
     assignPrimaryContact:
     - Assigns a primary contact with the title of 'VP Sales' to undeleted Opportunities.
     - Only updates the Opportunities that don't already have a primary contact.
     */
+    /*
     private static void assignPrimaryContact(Map<Id,Opportunity> oppNewMap) {        
         Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>();
         for (Opportunity opp : oppNewMap.values()){            
@@ -109,4 +115,6 @@ trigger AnotherOpportunityTrigger on Opportunity (before insert, after insert, b
         }
         update oppMap.values();
     }
+        */
+    
 }
